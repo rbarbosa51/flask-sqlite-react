@@ -17,9 +17,12 @@ class Comment(db.Model):
     def __repr__(self):
         return f'{self.id}, name {self.name} message {self.message}'
 
+
 @app.route('/')
+@app.route('/second')
 def main():
     return send_from_directory(directory=directory, path='index.html')
+
 
 @app.route('/assets/<file>')
 def assets(file):

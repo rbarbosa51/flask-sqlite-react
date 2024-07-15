@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
+import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
+import { Link } from 'react-router-dom'
 
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
           <textarea id='message' name='message' /><br />
           <input type='submit' className='ring-2 ring-purple-800 rounded' />
         </form>
+      </div>
+      <div className='flex justify-center mt-4'>
+        <Link className='underline text-blue-500' to={'/second'}>Go to Second Page</Link>
       </div>
       {/* <hr /> */}
       <div className="divider">Comment Section</div>
