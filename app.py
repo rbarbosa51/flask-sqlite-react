@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, request, redirect
+from flask import Flask, send_from_directory, request, redirect, render_template
 import os
 from flask_sqlalchemy import SQLAlchemy
 from dataclasses import dataclass
@@ -17,12 +17,10 @@ class Comment(db.Model):
     def __repr__(self):
         return f'{self.id}, name {self.name} message {self.message}'
 
-
 @app.route('/')
 @app.route('/second')
 def main():
     return send_from_directory(directory=directory, path='index.html')
-
 
 @app.route('/assets/<file>')
 def assets(file):
@@ -32,6 +30,10 @@ def assets(file):
 @app.route('/<file>')
 def public(file):
     return send_from_directory(directory=directory, path=file)
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html')
 
 @app.route('/api/create', methods=['POST'])
 def createPost():
