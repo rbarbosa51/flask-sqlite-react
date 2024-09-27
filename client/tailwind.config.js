@@ -2,10 +2,10 @@
 export default {
   content: [
     './index.html',
-    './src/**/*.jsx'
+    './src/**/*.{js,jsx}'
   ],
   presets: [],
-  darkMode: 'class', // or 'class'
+  darkMode: 'media', // or 'class'
   theme: {
     accentColor: ({ theme }) => ({
       ...theme('colors'),
@@ -74,7 +74,7 @@ export default {
     },
     blur: {
       0: '0',
-      none: '0',
+      none: '',
       sm: '4px',
       DEFAULT: '8px',
       md: '12px',

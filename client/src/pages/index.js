@@ -1,2 +1,2 @@
-export {default as App} from './App'
-export {default as SecondPage} from './SecondPage'
+export {default as Phone} from './Phone'
+export {default as Hub} from './Hub'

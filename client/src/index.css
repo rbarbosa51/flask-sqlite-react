@@ -3,7 +3,36 @@
 @tailwind utilities;
 
 @layer base {
-  #root {
-    @apply h-screen;
+  body, #root {
+    @apply min-h-screen;
+  }
+}
+@layer utilities {
+  .scrollbar-color {
+    scrollbar-color: #3B82F6 white;
+  }
+  .blue-gradient {
+    background: #457fca;  
+    background: linear-gradient(to right, #5691c8, #457fca); 
+  }
+}
+
+.ripple-btn {
+  position: absolute;
+  pointer-events: none;
+  width: 350px;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: ripple 1s linear infinite;
+}
+@keyframes ripple {
+  0% {
+    width: 0px;
+    opacity: 0.7;
+  }
+  100% {
+    width: 350px;
+    opacity: 0;
   }
 }

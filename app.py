@@ -12,13 +12,13 @@ db = SQLAlchemy(app)
 @dataclass
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
+    username = db.Column(db.String(100), nullable=False)
     message = db.Column(db.String(1000), nullable=False)
     def __repr__(self):
-        return f'{self.id}, name {self.name} message {self.message}'
+        return f'{self.id}, name {self.username} message {self.message}'
 
 @app.route('/')
-@app.route('/second')
+@app.route('/phone')
 def main():
     return send_from_directory(directory=directory, path='index.html')
 
@@ -37,7 +37,7 @@ def not_found(e):
 
 @app.route('/api/create', methods=['POST'])
 def createPost():
-    new_post = Comment(name=request.form['name'], message=request.form['message'])
+    new_post = Comment(username=request.form['username'], message=request.form['message'])
     try:
         db.session.add(new_post)
         db.session.commit()
@@ -51,7 +51,7 @@ def getPosts():
     comments = Comment.query.order_by(Comment.id).all()
     return [
             {"id": comment.id,
-             "name": comment.name,
+             "username": comment.username,
              "message": comment.message,
              } for comment in comments
             ]
