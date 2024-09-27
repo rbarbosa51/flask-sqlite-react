@@ -41,7 +41,7 @@ def createPost():
     try:
         db.session.add(new_post)
         db.session.commit()
-        return redirect('/')
+        return redirect('/phone')
     except Exception as e:
         print(f'Error: {e}')
         return f'Error: {e}'
