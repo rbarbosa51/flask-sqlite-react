@@ -3,17 +3,18 @@
 @tailwind utilities;
 
 @layer base {
-  body, #root {
+  body,
+  #root {
     @apply min-h-screen;
   }
 }
 @layer utilities {
   .scrollbar-color {
-    scrollbar-color: #3B82F6 white;
+    scrollbar-color: #3b82f6 white;
   }
   .blue-gradient {
-    background: #457fca;  
-    background: linear-gradient(to right, #5691c8, #457fca); 
+    background: #457fca;
+    background: linear-gradient(to right, #5691c8, #457fca);
   }
 }
 

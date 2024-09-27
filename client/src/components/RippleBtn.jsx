@@ -12,7 +12,7 @@ export default function RippleBtn({ className, rippleColor, children }) {
         ripple.style.left = `${e.pageX - e.target.offsetLeft}px`;
         ripple.style.top = `${e.pageY - e.target.offsetTop}px`;
         ripple.classList.add(`ripple-btn`);
-        ripple.classList.add(rippleColor)
+        ripple.classList.add(rippleColor);
         ref.current.appendChild(ripple);
         setTimeout(() => {
           ripple.remove();
