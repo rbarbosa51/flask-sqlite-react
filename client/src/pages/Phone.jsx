@@ -1,28 +1,31 @@
-import { PhoneComponent, RippleBtn } from "../components";
+import { PhoneComponent, RippleBtn, Vortex } from "../components";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
-export default function Phone() {
+
+const Phone = () => {
   const [messages, setMessages] = useState();
   useEffect(() => {
     fetch("api/getposts")
       .then((res) => res.text())
       .then((data) => setMessages(JSON.parse(data)));
   }, []);
+
   return (
-    <div className="blue-gradient min-h-screen">
-      <Link to={"/"} className="absolute pl-4 pt-1">
+    <div className="min-h-screen bg-black ">
+    <Vortex backgroundColor="black" className="min-h-screen">
+      <Link to={"/"} className="absolute pl-4 pt-2">
         <RippleBtn
           className={
-            "cursor-pointer rounded-xl border border-blue-800 bg-opacity-0 px-4 py-2 text-center text-xl text-blue-800 backdrop-blur-sm backdrop-filter"
+            "cursor-pointer rounded-xl border border-purple-600 bg-opacity-0 px-4 py-2 text-center text-xl text-purple-600 backdrop-blur-sm backdrop-filter"
           }
-          rippleColor={"bg-blue-300"}
+          rippleColor={"bg-purple-300"}
         >
           Go Back
         </RippleBtn>
       </Link>
 
-      <h1 className="pt-1 text-center text-4xl font-bold text-blue-800">
+      <h1 className="pt-1 font-thin text-center text-4xl text-purple-600">
         Comment Section
       </h1>
       <div className="flex w-full">
@@ -88,6 +91,8 @@ export default function Phone() {
           </PhoneComponent>
         </div>
       </div>
+    </Vortex>
     </div>
   );
 }
+export default memo(Phone)
