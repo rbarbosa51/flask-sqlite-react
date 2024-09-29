@@ -8,7 +8,7 @@ export default function Phone() {
     fetch("api/getposts")
       .then((res) => res.text())
       .then((data) => setMessages(JSON.parse(data)));
-  }, [messages]);
+  }, []);
   return (
     <div className="blue-gradient min-h-screen">
       <Link to={"/"} className="absolute pl-4 pt-1">
