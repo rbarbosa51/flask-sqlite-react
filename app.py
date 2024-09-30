@@ -1,9 +1,11 @@
 from flask import Flask, send_from_directory, request, redirect, render_template
+from flask_compress import Compress
 import os
 from flask_sqlalchemy import SQLAlchemy
 from dataclasses import dataclass
 
 app = Flask(__name__)
+Compress(app)
 directory = f'{os.getcwd()}/client/dist'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///project.db'
