@@ -1,5 +1,6 @@
 from flask import Flask, send_from_directory, request, redirect, render_template
 from flask_compress import Compress
+from utils import auth_required
 import os
 from flask_sqlalchemy import SQLAlchemy
 from dataclasses import dataclass
@@ -37,6 +38,11 @@ def public(file):
 def not_found(e):
     return render_template('404.html')
 
+@app.route('/dbadmin')
+@auth_required
+def db_admin():
+    return render_template('dbadmin.html')
+
 @app.route('/api/create', methods=['POST'])
 def createPost():
     new_post = Comment(username=request.form['username'], message=request.form['message'])
@@ -62,3 +68,6 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True, port=3001)
+
+# flask --app app.py --debug run
+# gunicorn  -b 0.0.0.0 app:app
