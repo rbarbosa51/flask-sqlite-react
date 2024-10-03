@@ -64,6 +64,13 @@ def getPosts():
              } for comment in comments
             ]
 
+@app.route('/api/deletepost', methods=['POST'])
+def deletepost():
+    id = Comment.query.filter_by(id=request.form.get('idDelete')).first()
+    db.session.delete(id)
+    db.session.commit()
+    return redirect('/phone')
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()

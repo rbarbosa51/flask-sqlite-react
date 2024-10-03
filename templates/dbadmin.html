@@ -3,9 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DB Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+
+        #comment {
+            display: block;
+            width: 80%;
+            margin: 2rem auto;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        
+        #tableBody {
+            text-align: left;
+        }
+        #tableBody .table-row {
+            line-height: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-collapse: separate;
+            border-spacing: 0 1rem;
+            background-color: rgba(21, 66, 227, 0.3);
+        }
+        #tableBody .table-row:nth-child(even) {
+            background-color: rgba(21, 66, 227, 0.2);
+        }
+        .tdID {
+            font-weight: bold;
+            padding-left: 0.5rem;
+        }
+        .tdMessage {
+            padding: 0.5rem 1rem;
+        }
+        hr {
+            width: 80%;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        form {
+            width: 80%;
+            margin: 1rem auto;
+            padding: 0.5rem 0;
+            display: flex;
+            flex-direction: column;
+            outline: 1px solid rgba(0, 0, 0, 0.3);
+            align-items: center;
+            gap: 0.5rem;
+
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to DB Admin</h1>
+    <table id="comment">
+        
+        <thead>
+            <tr>
+                <th scope="col" style="text-align: left; padding-left: 0.5rem;">ID</th>
+                <th scope="col" style="text-align: left; padding-left: 1rem;">Message</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+    <hr />
+    <h2>Delete comment</h2>
+    
+    <form action="api/deletepost" method="post">
+        <label for="idDelete">ID
+            <input type="text" id="idDelete" name="idDelete" />
+        </label>
+        <label for="submitBtn">
+            <input type="submit" value="submit">
+        </label>
+    </form>
+    
 </body>
+<script>
+    const comment = document.getElementById('comment')
+    fetch('api/getposts')
+    .then(res => res.text())
+    .then(data => {
+        const commentData = JSON.parse(data)
+        const tbody = document.getElementById('tableBody')
+
+        commentData.forEach(item => {
+            const tr = document.createElement('tr')
+            tr.classList.add('table-row')
+
+            const tdId = document.createElement('td')
+            tdId.classList.add('tdID')
+            tdId.innerText = item.id
+            tr.appendChild(tdId)
+
+            const tdMessage = document.createElement('td')
+            tdMessage.classList.add('tdMessage')
+            tdMessage.innerText = item.message 
+            tr.appendChild(tdMessage)
+            tbody.appendChild(tr)
+
+        })
+
+    })
+</script>
 </html>
