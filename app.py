@@ -71,10 +71,10 @@ def deletepost():
     db.session.commit()
     return redirect('/phone')
 
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True, port=3001)
+# if __name__ == "__main__":
+#     with app.app_context():
+#         db.create_all()
+#     app.run(debug=True, port=3001)
 
 # flask --app app.py --debug run
 # gunicorn  -b 0.0.0.0 app:app
