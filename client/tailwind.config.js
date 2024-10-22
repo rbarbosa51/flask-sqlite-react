@@ -5,8 +5,22 @@ export default {
     './src/**/*.{js,jsx}'
   ],
   presets: [],
-  darkMode: 'media', // or 'class'
+  darkMode: 'class', // or 'class'
   theme: {
+    extend: {
+      fontFamily: {
+        waterBrush: ["Water Brush", "serif"],
+        montserrat: ["Montserrat", "serif"],
+      },
+      backgroundImage: {
+        peacocktw: 'url(/images/peacockBG.jpeg)',
+        menu: 'url(/images/menu.png)',
+        volume: 'url(/images/volume.svg)',
+        pause: 'url(/images/volume-x.svg)',
+        share: 'url(/images/share4.svg)',
+      }
+
+    },
     accentColor: ({ theme }) => ({
       ...theme('colors'),
       auto: 'auto',
